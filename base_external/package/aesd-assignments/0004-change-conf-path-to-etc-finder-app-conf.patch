@@ -1,0 +1,35 @@
+From a2539931e09b5277724a2fc1d201e561f613fafe Mon Sep 17 00:00:00 2001
+From: Bruno Sampaio <bruno.sampaio08@unifesp.br>
+Date: Wed, 22 May 2024 13:43:12 -0300
+Subject: [PATCH] change conf path to /etc/finder-app/conf
+
+makes it possible to run from anywhere
+---
+ finder-app/finder-test.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/finder-app/finder-test.sh b/finder-app/finder-test.sh
+index c53a5a6..6a3b27f 100755
+--- a/finder-app/finder-test.sh
++++ b/finder-app/finder-test.sh
+@@ -8,7 +8,7 @@ set -u
+ NUMFILES=10
+ WRITESTR=AELD_IS_FUN
+ WRITEDIR=/tmp/aeld-data
+-username=$(cat conf/username.txt)
++username=$(cat /etc/finder-app/conf/username.txt)
+ 
+ if [ $# -lt 3 ]
+ then
+@@ -32,7 +32,7 @@ echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
+ rm -rf "${WRITEDIR}"
+ 
+ # create $WRITEDIR if not assignment1
+-assignment=`cat conf/assignment.txt`
++assignment=`cat /etc/finder-app/conf/assignment.txt`
+ 
+ if [ $assignment != 'assignment1' ]
+ then
+-- 
+2.45.1
+
