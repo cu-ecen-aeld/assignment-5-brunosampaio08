@@ -1,0 +1,28 @@
+From 40ac1639f1239bf8471b304081450feeb918cdfd Mon Sep 17 00:00:00 2001
+From: Bruno Sampaio <bruno.sampaio08@unifesp.br>
+Date: Fri, 24 May 2024 16:15:34 -0300
+Subject: [PATCH] fix -d being passed wrong
+
+without -- -d is passed as arg to
+start-stop-daemon and not aesdsocket,
+fix it
+---
+ server/aesdsocket-start-stop | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/server/aesdsocket-start-stop b/server/aesdsocket-start-stop
+index 3363ece..c5f10fd 100644
+--- a/server/aesdsocket-start-stop
++++ b/server/aesdsocket-start-stop
+@@ -3,7 +3,7 @@
+ case "$1" in
+ 	start)
+ 		echo "Starting aesdsocket"
+-		start-stop-daemon -S -n aesdsocket -a /usr/bin/aesdsocket -d
++		start-stop-daemon -S -n aesdsocket -a /usr/bin/aesdsocket -- -d
+ 		;;
+ 	stop)
+ 		echo "Stopping aesdsocket"
+-- 
+2.45.1
+

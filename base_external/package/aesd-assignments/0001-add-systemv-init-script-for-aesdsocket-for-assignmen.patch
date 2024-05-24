@@ -1,0 +1,36 @@
+From 248152f1ea842fde0ea3f7b78a368f3637f8e6cc Mon Sep 17 00:00:00 2001
+From: Bruno Sampaio <bruno.sampaio08@unifesp.br>
+Date: Fri, 24 May 2024 16:05:04 -0300
+Subject: [PATCH] add systemv init script for aesdsocket for assignment-5.2
+
+---
+ server/aesdsocket-start-stop | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+ create mode 100644 server/aesdsocket-start-stop
+
+diff --git a/server/aesdsocket-start-stop b/server/aesdsocket-start-stop
+new file mode 100644
+index 0000000..3363ece
+--- /dev/null
++++ b/server/aesdsocket-start-stop
+@@ -0,0 +1,17 @@
++#!/bin/sh
++
++case "$1" in
++	start)
++		echo "Starting aesdsocket"
++		start-stop-daemon -S -n aesdsocket -a /usr/bin/aesdsocket -d
++		;;
++	stop)
++		echo "Stopping aesdsocket"
++		start-stop-daemon -K -n aesdsocket
++		;;
++	*)
++		echo "Usage: $0 {start|stop}"
++	exit 1
++esac
++
++exit 0
+-- 
+2.45.1
+
